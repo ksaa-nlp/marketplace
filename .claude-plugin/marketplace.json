@@ -1,0 +1,13 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "ksaa-nlp",
+  "owner": {
+    "name": "فريق ksaa-nlp"
+  },
+  "metadata": {
+    "description": "سوق إضافات Claude Code لفريق ksaa-nlp: مهارات وأوامر وعملاء وخوادم MCP مشتركة لمشاريع حوسبة اللغة العربية، يثبّتها أعضاء الفريق بأمر واحد فتتوحّد أدوات العمل وطرائقه بين المستودعات.",
+    "version": "0.1.0",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": []
+}
