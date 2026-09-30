@@ -14,15 +14,29 @@
 ## الأوامر
 
 ```bash
-claude plugin validate .      # فحص marketplace.json وكل إضافة مسجّلة
+claude plugin validate .                                          # فحص marketplace.json وكل إضافة مسجّلة
+python3 -m unittest discover -s plugins/dga-design/tests          # اختبارات سكربتات dga-design، بلا شبكة
+python3 plugins/dga-design/scripts/sync_tokens.py [version]       # إعادة توليد رموز DGA من @platformscode/core (يحتاج npm وشبكة)
 ```
+
+السكربتات بمكتبة Python القياسية فقط، وتعمل على 3.8+.
 
 ## الخريطة
 
-- `.claude-plugin/marketplace.json` ← فهرس السوق: الاسم والمالك وقائمة الإضافات.
+- `.claude-plugin/marketplace.json` ← فهرس السوق: الاسم والمالك وقائمة الإضافات. مسار كل إضافة صريح (`./plugins/<name>`)، بلا `pluginRoot`.
 - `plugins/<name>/.claude-plugin/plugin.json` ← بيان الإضافة.
 - `plugins/<name>/{skills,commands,agents,hooks}/`، `.mcp.json` ← مكوّنات الإضافة.
 - `README.md` ← دليل التثبيت وجدول الإضافات.
+
+### `plugins/dga-design` (مطابقة كود المنصات من DGA)
+
+- `skills/dga-design/SKILL.md` ← سير العمل: فهم، ثم تدقيق، ثم خطة، ثم تطبيق، ثم تحقق، ثم تقرير. يُستدعى `/dga-design:dga-design`.
+- `skills/dga-design/references/` ← `foundations.md` (الرموز والأساسات) · `components.md` (المكونات والقوالب) · `checklist.md` (البنود الـ56 الرسمية) · `implementation.md` (المسار حسب المكدس).
+- `skills/dga-design/assets/dga-tokens.css` ← **مولَّد** من `@platformscode/core` (MIT). لا يُعدَّل يدويًا؛ أعد توليده بـ `sync_tokens.py`.
+- `skills/dga-design/scripts/audit.py` ← التدقيق الآلي للقيم الثابتة.
+- `scripts/sync_tokens.py` ← أداة صيانة لتوليد ملف الرموز (خارج المهارة؛ لا يحتاجها المستخدم).
+- `tests/` ← اختبارات السكربتين.
+- مرجعية المحتوى: موقع design.dga.gov.sa وقائمة التحقق الرسمية والحزمة. إن تعارض نص الموقع مع الحزمة فالحزمة هي المرجع، والتعارضات موثقة في آخر `foundations.md`.
 
 ## قواعد ثابتة
 
@@ -32,4 +46,4 @@ claude plugin validate .      # فحص marketplace.json وكل إضافة مسج
 
 ## قبل أن تُنهي
 
-شغّل `claude plugin validate .` وأدرج نتيجته.
+شغّل `claude plugin validate .` واختبارات الإضافات المعدَّلة، وأدرج نتيجتها.

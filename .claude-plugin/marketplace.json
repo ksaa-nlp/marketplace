@@ -6,8 +6,16 @@
   },
   "metadata": {
     "description": "سوق إضافات Claude Code لفريق ksaa-nlp: مهارات وأوامر وعملاء وخوادم MCP مشتركة لمشاريع حوسبة اللغة العربية، يثبّتها أعضاء الفريق بأمر واحد فتتوحّد أدوات العمل وطرائقه بين المستودعات.",
-    "version": "0.1.0",
-    "pluginRoot": "./plugins"
+    "version": "0.2.0"
   },
-  "plugins": []
+  "plugins": [
+    {
+      "name": "dga-design",
+      "source": "./plugins/dga-design",
+      "description": "مطابقة تصميم المشروع لكود المنصات، نظام التصميم الوطني الموحد من هيئة الحكومة الرقمية (DGA): تدقيق آلي، ثم خطة، ثم تطبيق للرموز والمكونات، وتقرير بأرقام بنود قائمة التحقق الرسمية.",
+      "version": "0.1.0",
+      "category": "design",
+      "keywords": ["dga", "platforms-code", "design-system", "rtl"]
+    }
+  ]
 }

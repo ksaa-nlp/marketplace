@@ -1,0 +1,11 @@
+{
+  "name": "dga-design",
+  "version": "0.1.0",
+  "description": "مهارة لمطابقة تصميم المشروع لكود المنصات، نظام التصميم الوطني الموحد من هيئة الحكومة الرقمية (design.dga.gov.sa). تبدأ بتدقيق آلي للرموز والمكونات مقابل قائمة التحقق الرسمية، ثم تطبّق التغييرات بعد موافقة صاحب المشروع.",
+  "author": {
+    "name": "فريق ksaa-nlp"
+  },
+  "repository": "https://github.com/ksaa-nlp/marketplace",
+  "license": "MIT",
+  "keywords": ["dga", "platforms-code", "design-system", "كود المنصات", "rtl", "arabic"]
+}
