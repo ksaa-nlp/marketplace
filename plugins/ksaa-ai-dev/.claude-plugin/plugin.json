@@ -1,0 +1,18 @@
+{
+  "name": "ksaa-ai-dev",
+  "version": "0.3.0",
+  "description": "ست عشرة مهارة عربية لحوكمة التطوير بمساعدة AI، من اكتشاف المستودع والمواصفة إلى الاختبار والمراجعة وجاهزية الإصدار، مع أمثلة للمعاجم والمدونات اللغوية والألعاب التعليمية.",
+  "author": {
+    "name": "فريق ksaa-nlp"
+  },
+  "repository": "https://github.com/ksaa-nlp/marketplace",
+  "keywords": [
+    "ksaa",
+    "arabic-nlp",
+    "games",
+    "coding",
+    "testing",
+    "security",
+    "governance"
+  ]
+}

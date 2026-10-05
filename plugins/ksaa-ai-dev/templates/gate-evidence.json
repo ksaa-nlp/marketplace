@@ -1,0 +1,108 @@
+{
+  "schema-version": 1,
+  "revision": "",
+  "gates": [
+    {
+      "id": "lint",
+      "status": "not-run",
+      "evidence": {
+        "method": "",
+        "environment": "",
+        "executed-at": "",
+        "artifact": "",
+        "result": "",
+        "revision": ""
+      }
+    },
+    {
+      "id": "unit",
+      "status": "not-run",
+      "evidence": {
+        "method": "",
+        "environment": "",
+        "executed-at": "",
+        "artifact": "",
+        "result": "",
+        "revision": ""
+      }
+    },
+    {
+      "id": "integration",
+      "status": "not-run",
+      "evidence": {
+        "method": "",
+        "environment": "",
+        "executed-at": "",
+        "artifact": "",
+        "result": "",
+        "revision": ""
+      }
+    },
+    {
+      "id": "sast",
+      "status": "not-run",
+      "evidence": {
+        "method": "",
+        "environment": "",
+        "executed-at": "",
+        "artifact": "",
+        "result": "",
+        "revision": ""
+      }
+    },
+    {
+      "id": "dependency",
+      "status": "not-run",
+      "evidence": {
+        "method": "",
+        "environment": "",
+        "executed-at": "",
+        "artifact": "",
+        "result": "",
+        "revision": ""
+      }
+    },
+    {
+      "id": "secrets",
+      "status": "not-run",
+      "evidence": {
+        "method": "",
+        "environment": "",
+        "executed-at": "",
+        "artifact": "",
+        "result": "",
+        "revision": ""
+      }
+    },
+    {
+      "id": "human-review",
+      "status": "not-run",
+      "evidence": {
+        "method": "",
+        "environment": "",
+        "executed-at": "",
+        "artifact": "",
+        "result": "",
+        "revision": ""
+      },
+      "human-decision": {
+        "decision": "pending",
+        "reviewer": "",
+        "artifact": ""
+      }
+    },
+    {
+      "id": "ci-cd",
+      "status": "not-run",
+      "evidence": {
+        "method": "",
+        "environment": "",
+        "executed-at": "",
+        "artifact": "",
+        "result": "",
+        "revision": ""
+      },
+      "enforcement-evidence": ""
+    }
+  ]
+}
