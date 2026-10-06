@@ -1,0 +1,11 @@
+{
+  "name": "feature-test-report",
+  "version": "0.1.0",
+  "description": "مهارة تستخرج سيناريوهات الاختبار لميزة من مواصفتها، وتربط كل سيناريو بدليله الآلي أو اليدوي، وتشغّل ما يمكن تشغيله، ثم تكتب تقرير اختبار بحكم واضح عن جاهزية الميزة للإصدار. تعمل في أي مشروع، وترصد الفجوات دون تعديل الكود.",
+  "author": {
+    "name": "فريق ksaa-nlp"
+  },
+  "repository": "https://github.com/ksaa-nlp/marketplace",
+  "license": "MIT",
+  "keywords": ["testing", "qa", "test-report", "spec", "coverage", "اختبار"]
+}
