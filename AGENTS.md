@@ -38,6 +38,13 @@ python3 plugins/dga-design/scripts/sync_tokens.py [version]       # إعادة �
 - `tests/` ← اختبارات السكربتين.
 - مرجعية المحتوى: موقع design.dga.gov.sa وقائمة التحقق الرسمية والحزمة. إن تعارض نص الموقع مع الحزمة فالحزمة هي المرجع، والتعارضات موثقة في آخر `foundations.md`.
 
+### `plugins/feature-test-report` (سيناريوهات الاختبار وتقريرها)
+
+- `skills/feature-test-report/SKILL.md` ← سير العمل: تعرّف على المشروع، ثم متطلبات، ثم سيناريوهات، ثم مطابقة الكود، ثم أدلة، ثم تشغيل، ثم تقرير. يُستدعى `/feature-test-report:feature-test-report`.
+- `skills/feature-test-report/report-template.md` ← قالب التقرير.
+- `skills/feature-test-report/project-config-example.md` ← قالب الإعدادات الاختيارية التي يضعها كل مشروع في `.claude/feature-test-report.md`.
+- المهارة عامة لكل المشاريع: لا تكتب فيها مسارًا أو أمرًا أو اسم إطار خاصًّا بمشروع بعينه؛ مكان ذلك ملف إعدادات المشروع.
+
 ## قواعد ثابتة
 
 - كل إضافة جديدة تُسجَّل في `marketplace.json` وتُضاف إلى جدول `README.md` في الـcommit نفسه.

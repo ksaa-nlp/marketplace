@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "سوق إضافات Claude Code لفريق ksaa-nlp: مهارات وأوامر وعملاء وخوادم MCP مشتركة لمشاريع حوسبة اللغة العربية، يثبّتها أعضاء الفريق بأمر واحد فتتوحّد أدوات العمل وطرائقه بين المستودعات.",
-    "version": "0.2.0"
+    "version": "0.3.0"
   },
   "plugins": [
     {
@@ -16,6 +16,14 @@
       "version": "0.1.0",
       "category": "design",
       "keywords": ["dga", "platforms-code", "design-system", "rtl"]
+    },
+    {
+      "name": "feature-test-report",
+      "source": "./plugins/feature-test-report",
+      "description": "سيناريوهات اختبار لميزة من مواصفتها: استخراج المتطلبات، ثم ربط كل سيناريو بدليله الآلي أو اليدوي، ثم تشغيل ما يمكن تشغيله، ثم تقرير بحكم واضح عن الجاهزية للإصدار. تعمل في أي مشروع.",
+      "version": "0.1.0",
+      "category": "testing",
+      "keywords": ["testing", "qa", "test-report", "spec"]
     }
   ]
 }
