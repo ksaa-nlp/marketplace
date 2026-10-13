@@ -24,15 +24,15 @@
 
 | الأداة | مجلدات المستخدم | مجلدات المشروع |
 |---|---|---|
-| Claude | `~/.claude/skills`، والإضافات المثبّتة فقط | `.claude/skills` |
+| Claude | `~/.claude/skills`، والإضافات المثبّتة فقط، ومهارات claude.ai وإضافاته التي يزامنها تطبيق سطح المكتب | `.claude/skills` |
 | Codex | `~/.codex/skills`، `~/.agents/skills` | `.agents/skills`، `.codex/skills` |
 | Antigravity | `~/.gemini/antigravity/skills`، `~/.gemini/antigravity-cli/skills`، `~/.gemini/config/skills`، `~/.gemini/config/plugins` | `.agent/skills`، `.agents/skills` |
 
-إضافات Claude تُقرأ من `~/.claude/plugins/installed_plugins.json`: لا تُعدّ الإضافات الموجودة في نسخ الأسواق دون تثبيت، ولا المعطّلة في `enabledPlugins`، ولا المثبّتة لمشروع آخر.
+إضافات Claude تُقرأ من `~/.claude/plugins/installed_plugins.json`: لا تُعدّ الإضافات الموجودة في نسخ الأسواق دون تثبيت، ولا المعطّلة في `enabledPlugins`، ولا المثبّتة لمشروع آخر. ومهارات claude.ai (مثل anthropic-skills وإضافات المؤسسة) تُقرأ من مجلد تطبيق سطح المكتب `local-agent-mode-sessions`، مع تخطي المعطّل منها.
 
 المجلد المشترك بين أداتين (مثل `.agents/skills`) يظهر مرة واحدة باسم الأداتين، ولكل أداة سطر إجمالي خاص بها لأن كل أداة لا تحمّل إلا مهاراتها.
 
-إن وُجد `ANTHROPIC_API_KEY` فالعدّ عبر واجهة عدّ الرموز: دقيق لـ Claude وتقريبي لـ Codex وAntigravity لاختلاف المُرمِّز، وإلا فتقدير (عدد الأحرف ÷ 3.5، بهامش ±15% تقريبًا). المهارات المدمجة والمستضافة على claude.ai بلا ملفات محلية لا تدخل في الجدول.
+إن وُجد `ANTHROPIC_API_KEY` فالعدّ عبر واجهة عدّ الرموز: دقيق لـ Claude وتقريبي لـ Codex وAntigravity لاختلاف المُرمِّز، وإلا فتقدير (عدد الأحرف ÷ 3.5، بهامش ±15% تقريبًا). المهارات المدمجة في الأداة نفسها (مثل code-review وsimplify في Claude Code) لا ملفات لها على القرص فلا تدخل في الجدول.
 
 ## التثبيت في Codex وAntigravity
 
