@@ -20,7 +20,7 @@ Use this when the user asks how much context their installed skills take, which 
 ## Steps
 
 1. Run `python3 ${CLAUDE_SKILL_DIR}/scripts/scan.py [--tools ...] [extra dirs...]`. Outside Claude Code, `${CLAUDE_SKILL_DIR}` is not set: use the folder that contains this SKILL.md instead. By default it scans every tool's folders:
-   - **Claude**: `~/.claude/skills`, `~/.claude/plugins`, `./.claude/skills`
+   - **Claude**: `~/.claude/skills`, `./.claude/skills`, and installed plugins only (from `~/.claude/plugins/installed_plugins.json`, skipping plugins disabled in `enabledPlugins` or installed for another project)
    - **Codex**: `~/.codex/skills`, `~/.agents/skills`, `./.agents/skills`, `./.codex/skills`
    - **Antigravity**: `~/.gemini/antigravity/skills`, `~/.gemini/antigravity-cli/skills`, `~/.gemini/config/skills`, `~/.gemini/config/plugins`, `./.agent/skills`, `./.agents/skills`
 

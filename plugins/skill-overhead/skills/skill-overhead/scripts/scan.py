@@ -1,8 +1,27 @@
 import json, os, re, sys, urllib.request
 H = os.path.expanduser("~")
+
+def load(path):
+    try: return json.load(open(path, encoding="utf-8"))
+    except Exception: return {}
+
+def claude_plugins():
+    # Only installed plugins: ~/.claude/plugins also holds full marketplace clones whose plugins are not installed.
+    # Plugins installed for another project, or disabled in enabledPlugins, are skipped too.
+    enabled = {}
+    for s in (H + "/.claude/settings.json", ".claude/settings.json", ".claude/settings.local.json"):
+        enabled.update(load(s).get("enabledPlugins") or {})
+    cwd = os.path.realpath(".")
+    for pid, entries in (load(H + "/.claude/plugins/installed_plugins.json").get("plugins") or {}).items():
+        if enabled.get(pid) is False: continue
+        for e in entries if isinstance(entries, list) else [entries]:
+            pp = e.get("projectPath")
+            if e.get("scope", "user") == "user" or (pp and os.path.realpath(pp) == cwd):
+                yield e["installPath"]
+
 # Where each tool loads skills from: user-level folders, then project folders (relative to the current directory).
 TOOLS = {
-    "Claude": [H + "/.claude/skills", H + "/.claude/plugins", ".claude/skills"],
+    "Claude": [H + "/.claude/skills", ".claude/skills"] + list(claude_plugins()),
     "Codex": [H + "/.codex/skills", H + "/.agents/skills", ".agents/skills", ".codex/skills"],
     "Antigravity": [H + "/.gemini/antigravity/skills", H + "/.gemini/antigravity-cli/skills", H + "/.gemini/config/skills",
                     H + "/.gemini/config/plugins", ".agent/skills", ".agents/skills"],

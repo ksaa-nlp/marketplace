@@ -24,9 +24,11 @@
 
 | الأداة | مجلدات المستخدم | مجلدات المشروع |
 |---|---|---|
-| Claude | `~/.claude/skills`، `~/.claude/plugins` | `.claude/skills` |
+| Claude | `~/.claude/skills`، والإضافات المثبّتة فقط | `.claude/skills` |
 | Codex | `~/.codex/skills`، `~/.agents/skills` | `.agents/skills`، `.codex/skills` |
 | Antigravity | `~/.gemini/antigravity/skills`، `~/.gemini/antigravity-cli/skills`، `~/.gemini/config/skills`، `~/.gemini/config/plugins` | `.agent/skills`، `.agents/skills` |
+
+إضافات Claude تُقرأ من `~/.claude/plugins/installed_plugins.json`: لا تُعدّ الإضافات الموجودة في نسخ الأسواق دون تثبيت، ولا المعطّلة في `enabledPlugins`، ولا المثبّتة لمشروع آخر.
 
 المجلد المشترك بين أداتين (مثل `.agents/skills`) يظهر مرة واحدة باسم الأداتين، ولكل أداة سطر إجمالي خاص بها لأن كل أداة لا تحمّل إلا مهاراتها.
 
