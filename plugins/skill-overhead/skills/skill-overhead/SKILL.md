@@ -1,13 +1,13 @@
 ---
 name: skill-overhead
-description: يفحص مهارات Claude المثبّتة ويقيس ما تضيفه كل واحدة إلى نافذة السياق (الوصف المحمّل دائمًا مقابل المتن المحمّل عند الاستدعاء)، ويعرض النتيجة جدولًا بالعربية. استعمله عند السؤال عن حجم السياق الذي تأخذه المهارات، أو أثقلها، أو طلب جدول بالعبء. Scan installed Claude skills and report the context-window overhead of each one as a table, in Arabic.
-argument-hint: "[مجلدات مهارات إضافية...]"
+description: يفحص المهارات المثبّتة لـ Claude وCodex وAntigravity ويقيس ما تضيفه كل واحدة إلى نافذة السياق (الوصف المحمّل دائمًا مقابل المتن المحمّل عند الاستدعاء)، ويعرض النتيجة جدولًا بالعربية. استعمله عند السؤال عن حجم السياق الذي تأخذه المهارات، أو أثقلها، أو طلب جدول بالعبء. Scan installed Claude, Codex and Antigravity skills and report the context-window overhead of each one as a table, in Arabic.
+argument-hint: "[--tools claude,codex,antigravity] [مجلدات مهارات إضافية...]"
 allowed-tools: Bash(python3 ${CLAUDE_SKILL_DIR}/scripts/scan.py *)
 ---
 
 # Skill context overhead report (Arabic output)
 
-Use this when the user asks how much context their installed skills take, which skills are the heaviest, or wants an overhead table.
+Use this when the user asks how much context their installed skills take, which skills are the heaviest, or wants an overhead table. It covers Claude, Codex and Antigravity, and works when this skill itself is installed in any of the three.
 
 **Language rule:** write everything the user sees in Arabic: the table, the summary, and any notes. Keep skill names, file paths, and terms like SKILL.md, /clear and ANTHROPIC_API_KEY exactly as they are, untranslated.
 
@@ -19,7 +19,12 @@ Use this when the user asks how much context their installed skills take, which 
 
 ## Steps
 
-1. Run `python3 ${CLAUDE_SKILL_DIR}/scripts/scan.py [extra dirs...]`. By default it scans `~/.claude/skills`, `~/.claude/plugins` and `./.claude/skills`. Pass any other skill folders the user mentions as extra arguments. The script already prints its headers and labels in Arabic.
-2. If `ANTHROPIC_API_KEY` is set, it uses the Anthropic token counting API for exact counts. Otherwise it estimates with characters ÷ 3.5 (about ±15%). The first line of output states which method was used. Keep that line.
-3. Show the table it prints. Then add a short summary **in Arabic**: the always-loaded total, the 3 heaviest descriptions, and that per-skill cost depends on description length, not skill size. Also mention that built-in and claude.ai-hosted skills without local files are not included.
+1. Run `python3 ${CLAUDE_SKILL_DIR}/scripts/scan.py [--tools ...] [extra dirs...]`. Outside Claude Code, `${CLAUDE_SKILL_DIR}` is not set: use the folder that contains this SKILL.md instead. By default it scans every tool's folders:
+   - **Claude**: `~/.claude/skills`, `~/.claude/plugins`, `./.claude/skills`
+   - **Codex**: `~/.codex/skills`, `~/.agents/skills`, `./.agents/skills`, `./.codex/skills`
+   - **Antigravity**: `~/.gemini/antigravity/skills`, `~/.gemini/antigravity-cli/skills`, `~/.gemini/config/skills`, `~/.gemini/config/plugins`, `./.agent/skills`, `./.agents/skills`
+
+   If the user asks about one tool, pass `--tools codex` (comma-separated for several). Pass any other skill folders the user mentions as extra arguments; they appear under the tool «مخصص». The script already prints its headers and labels in Arabic.
+2. If `ANTHROPIC_API_KEY` is set, it uses the Anthropic token counting API: exact for Claude, close but approximate for Codex and Antigravity, whose models use other tokenizers. Otherwise it estimates with characters ÷ 3.5 (about ±15%). The first line of output states which method was used. Keep that line.
+3. Show the table it prints. A skill folder shared by several tools (such as `./.agents/skills`) is listed once with all of them, and each tool has its own total row, because each tool pays only for the skills it loads. Then add a short summary **in Arabic**: the always-loaded total for each tool, the 3 heaviest descriptions, and that per-skill cost depends on description length, not skill size. Also mention that built-in and hosted skills without local files are not included.
 4. If the table is long, save it to a Markdown file and point to it instead of pasting it all.
