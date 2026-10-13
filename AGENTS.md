@@ -55,6 +55,11 @@ python3 plugins/dga-design/scripts/sync_tokens.py [version]       # إعادة �
 - التقرير تقييم ذاتي: المهارة لا تمنح شهادة امتثال ولا تقرر أن المشروع ملتزم، وما لا يظهر في الكود يُعلَّم ❓ أو 🏢 بدل افتراضه.
 - المصدر الأصلي [osama-rf/nca-secure-dev](https://github.com/osama-rf/nca-secure-dev) (MIT): التطوير الأساسي هناك، وما هنا نسخة للتوزيع مع إضافات الفريق. أي تعديل جوهري يُرفع للمستودع الأصلي أيضًا حتى لا تتفرّع النسختان.
 
+### `plugins/skill-overhead` (عبء المهارات على السياق)
+
+- `skills/skill-overhead/SKILL.md` ← سير العمل: تشغيل الفحص، ثم عرض الجدول، ثم ملخص بالعربية. يُستدعى `/skill-overhead:skill-overhead`.
+- `skills/skill-overhead/scripts/scan.py` ← يفحص مجلدات المهارات ويعدّ الرموز (بواجهة Anthropic إن وُجد `ANTHROPIC_API_KEY`، وإلا تقديرًا).
+
 ## قواعد ثابتة
 
 - كل إضافة جديدة تُسجَّل في `marketplace.json` وتُضاف إلى جدول `README.md` في الـcommit نفسه.

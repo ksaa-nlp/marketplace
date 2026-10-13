@@ -35,6 +35,7 @@
 | [`feature-test-report`](plugins/feature-test-report/) | سيناريوهات اختبار لميزة من مواصفتها: استخراج المتطلبات، ثم ربط كل سيناريو بدليله، ثم تشغيل ما يمكن تشغيله، ثم تقرير بحكم عن الجاهزية للإصدار. تعمل في أي مشروع | `/feature-test-report:feature-test-report [مسار المواصفة]` |
 | [`nca-secure-dev`](plugins/nca-secure-dev/) | تطبيق متطلبات الهيئة الوطنية للأمن السيبراني وتدقيقها: وضع يطبّق الضوابط أثناء كتابة الكود، ووضع يفحص مشروعًا قائمًا بلا تعديل، ثم تقرير التزام عربي لكل ضابط حالته ودليله ومسار معالجته | `/nca-secure-dev:nca-secure-dev [audit\|build\|fix]` |
 | [`accessibility-toolbar`](plugins/accessibility-toolbar/) | شريط تفضيلات إتاحة عربي مع مرجع React V5 وZIP أصلي وتوثيق للتكييف وحدوده، دون ادعاء مطابقة WCAG كاملة | `/accessibility-toolbar:accessibility-toolbar` |
+| [`skill-overhead`](plugins/skill-overhead/) | قياس ما تضيفه كل مهارة مثبّتة إلى نافذة السياق: الوصف المحمّل في كل دور مقابل المتن المحمّل عند الاستدعاء والملفات المرفقة، في جدول عربي مرتب من الأثقل | `/skill-overhead:skill-overhead [مجلدات إضافية]` |
 
 ## إضافة إضافة جديدة
 
