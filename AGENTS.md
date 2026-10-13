@@ -45,6 +45,11 @@ python3 plugins/dga-design/scripts/sync_tokens.py [version]       # إعادة �
 - `skills/feature-test-report/project-config-example.md` ← قالب الإعدادات الاختيارية التي يضعها كل مشروع في `.claude/feature-test-report.md`.
 - المهارة عامة لكل المشاريع: لا تكتب فيها مسارًا أو أمرًا أو اسم إطار خاصًّا بمشروع بعينه؛ مكان ذلك ملف إعدادات المشروع.
 
+### `plugins/skill-overhead` (عبء المهارات على السياق)
+
+- `skills/skill-overhead/SKILL.md` ← سير العمل: تشغيل الفحص، ثم عرض الجدول، ثم ملخص بالعربية. يُستدعى `/skill-overhead:skill-overhead`.
+- `skills/skill-overhead/scripts/scan.py` ← يفحص مجلدات المهارات ويعدّ الرموز (بواجهة Anthropic إن وُجد `ANTHROPIC_API_KEY`، وإلا تقديرًا).
+
 ## قواعد ثابتة
 
 - كل إضافة جديدة تُسجَّل في `marketplace.json` وتُضاف إلى جدول `README.md` في الـcommit نفسه.
