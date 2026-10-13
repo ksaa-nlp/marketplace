@@ -58,7 +58,7 @@ python3 plugins/dga-design/scripts/sync_tokens.py [version]       # إعادة �
 ### `plugins/skill-overhead` (عبء المهارات على السياق)
 
 - `skills/skill-overhead/SKILL.md` ← سير العمل: تشغيل الفحص، ثم عرض الجدول، ثم ملخص بالعربية. يُستدعى `/skill-overhead:skill-overhead`.
-- `skills/skill-overhead/scripts/scan.py` ← يفحص مجلدات المهارات ويعدّ الرموز (بواجهة Anthropic إن وُجد `ANTHROPIC_API_KEY`، وإلا تقديرًا).
+- `skills/skill-overhead/scripts/scan.py` ← يفحص مجلدات مهارات Claude وCodex وAntigravity ويعدّ الرموز (بواجهة Anthropic إن وُجد `ANTHROPIC_API_KEY`، وإلا تقديرًا).
 
 ## قواعد ثابتة
 
