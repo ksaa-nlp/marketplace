@@ -1,4 +1,4 @@
-import json, os, re, sys, urllib.request
+import glob, json, os, re, sys, urllib.request
 H = os.path.expanduser("~")
 
 def load(path):
@@ -19,9 +19,26 @@ def claude_plugins():
             if e.get("scope", "user") == "user" or (pp and os.path.realpath(pp) == cwd):
                 yield e["installPath"]
 
+def claude_desktop():
+    # Skills the Claude desktop app syncs from claude.ai: Anthropic skills (skills-plugin/) and org/user plugins (rpm/).
+    # Old copies from other accounts stay on disk, so only the most recently updated manifest of each kind is used.
+    base = next((b for b in (H + "/Library/Application Support/Claude", os.environ.get("APPDATA", "") + "/Claude",
+                             H + "/.config/Claude") if os.path.isdir(b + "/local-agent-mode-sessions")), None)
+    if not base: return
+    def newest(pattern):
+        ms = [(load(m).get("lastUpdated", 0), m) for m in glob.glob(base + "/local-agent-mode-sessions/" + pattern)]
+        return max(ms)[1] if ms else None
+    m = newest("skills-plugin/*/*/manifest.json")
+    if m:
+        for s in load(m).get("skills", []):
+            if s.get("enabled", True): yield os.path.join(os.path.dirname(m), "skills", s.get("skillId", s.get("name", "")))
+    m = newest("*/*/rpm/manifest.json")
+    if m:
+        for p in load(m).get("plugins", []): yield os.path.join(os.path.dirname(m), p["id"])
+
 # Where each tool loads skills from: user-level folders, then project folders (relative to the current directory).
 TOOLS = {
-    "Claude": [H + "/.claude/skills", ".claude/skills"] + list(claude_plugins()),
+    "Claude": [H + "/.claude/skills", ".claude/skills"] + list(claude_plugins()) + list(claude_desktop()),
     "Codex": [H + "/.codex/skills", H + "/.agents/skills", ".agents/skills", ".codex/skills"],
     "Antigravity": [H + "/.gemini/antigravity/skills", H + "/.gemini/antigravity-cli/skills", H + "/.gemini/config/skills",
                     H + "/.gemini/config/plugins", ".agent/skills", ".agents/skills"],
@@ -59,7 +76,7 @@ for tool, root in roots:
         desc = re.sub(r"\s+", " ", desc.group(1)).strip().strip("'\"|>") if desc else ""
         d = os.path.dirname(p)
         extra = sum(os.path.getsize(os.path.join(a, f)) for a, _, fs in os.walk(d) for f in fs) - os.path.getsize(p)
-        src = "إضافة" if "/plugins/" in p else ("المشروع" if not os.path.abspath(p).startswith(H) else "المستخدم")
+        src = "claude.ai" if "/local-agent-mode-sessions/" in p else "إضافة" if "/plugins/" in p else ("المشروع" if not os.path.abspath(p).startswith(H) else "المستخدم")
         found[rp] = {"name": name, "tools": [tool], "source": src, "listing": f"- {name}: {desc}", "body": body, "extra_kb": extra // 1024}
 rows = list(found.values())
 key = os.environ.get("ANTHROPIC_API_KEY")
