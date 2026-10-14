@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "سوق إضافات Claude Code لفريق ksaa-nlp: مهارات وأوامر وعملاء وخوادم MCP مشتركة لمشاريع حوسبة اللغة العربية، يثبّتها أعضاء الفريق بأمر واحد فتتوحّد أدوات العمل وطرائقه بين المستودعات.",
-    "version": "0.3.0"
+    "version": "0.4.0"
   },
   "plugins": [
     {
@@ -15,7 +15,12 @@
       "description": "مطابقة تصميم المشروع لكود المنصات، نظام التصميم الوطني الموحد من هيئة الحكومة الرقمية (DGA): تدقيق آلي، ثم خطة، ثم تطبيق للرموز والمكونات، وتقرير بأرقام بنود قائمة التحقق الرسمية.",
       "version": "0.1.0",
       "category": "design",
-      "keywords": ["dga", "platforms-code", "design-system", "rtl"]
+      "keywords": [
+        "dga",
+        "platforms-code",
+        "design-system",
+        "rtl"
+      ]
     },
     {
       "name": "feature-test-report",
@@ -23,7 +28,27 @@
       "description": "سيناريوهات اختبار لميزة من مواصفتها: استخراج المتطلبات، ثم ربط كل سيناريو بدليله الآلي أو اليدوي، ثم تشغيل ما يمكن تشغيله، ثم تقرير بحكم واضح عن الجاهزية للإصدار. تعمل في أي مشروع.",
       "version": "0.1.0",
       "category": "testing",
-      "keywords": ["testing", "qa", "test-report", "spec"]
+      "keywords": [
+        "testing",
+        "qa",
+        "test-report",
+        "spec"
+      ]
+    },
+    {
+      "name": "nca-secure-dev",
+      "source": "./plugins/nca-secure-dev",
+      "description": "تطبيق متطلبات الهيئة الوطنية للأمن السيبراني وتدقيقها: وضع يكتب الكود وفق ECC-2:2024 و NCNICC-1:2025 و NCS-2:2025، ووضع يفحص مشروعًا قائمًا بلا تعديل ويجمع الأدلة آليًّا، ثم تقرير التزام عربي لكل ضابط حالته ودليله ومسار معالجته.",
+      "version": "0.1.0",
+      "category": "security",
+      "keywords": [
+        "nca",
+        "ecc",
+        "ncnicc",
+        "compliance",
+        "security-audit",
+        "secure-coding"
+      ]
     }
   ]
 }

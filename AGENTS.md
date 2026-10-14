@@ -45,6 +45,16 @@ python3 plugins/dga-design/scripts/sync_tokens.py [version]       # إعادة �
 - `skills/feature-test-report/project-config-example.md` ← قالب الإعدادات الاختيارية التي يضعها كل مشروع في `.claude/feature-test-report.md`.
 - المهارة عامة لكل المشاريع: لا تكتب فيها مسارًا أو أمرًا أو اسم إطار خاصًّا بمشروع بعينه؛ مكان ذلك ملف إعدادات المشروع.
 
+### `plugins/nca-secure-dev` (متطلبات الهيئة الوطنية للأمن السيبراني)
+
+- `skills/nca-secure-dev/SKILL.md` ← سير العمل: اختيار الوضع (BUILD أثناء الكتابة · AUDIT للقراءة فقط · FIX للمعالجة)، ثم النطاق، ثم الفحص، ثم التقرير. يُستدعى `/nca-secure-dev:nca-secure-dev`.
+- `skills/nca-secure-dev/references/` ← `frameworks.md` (الأطر وإصداراتها السارية) · `dev-checklist.md` (قائمة المطوّر بأرقام الضوابط) · `audit-playbook.md` (تدقيق مشروع قائم) · `secure-patterns.md` (نمط ❌ ونمط ✅ لكل مجال).
+- `skills/nca-secure-dev/assets/compliance-report-template.md` ← قالب التقرير. يبدأ بكتلة `<div dir="rtl">` ويليها سطر فارغ ثم ينتهي بـ `</div>`؛ السطر الفارغ ضروري لأن كتلة HTML في CommonMark تنتهي عنده فتبقى العناوين والجداول Markdown مع بقاء الاتجاه. لا تحذف الكتلة ولا وسم الإغلاق.
+- `skills/nca-secure-dev/scripts/nca-scan.sh` ← جمع الأدلة آليًّا. للقراءة فقط: لا يثبّت أداة ولا يعدّل المشروع، ولا يكتب إلا في `compliance/evidence/`. يحدّ عرض السطر (`NCA_MAX_LINE_CHARS`) وعدد النتائج لكل فحص (`NCA_MAX_HITS`) — بلا حدّ العرض يكفي سطر واحد من ملف JavaScript مصغّر ليبلغ ملف الأدلة عشرات الميغابايتات.
+- `references/frameworks.md` هو مرجع الإصدارات: راجع موقع الهيئة قبل الاعتماد عليه، وانقل أي إصدار صدر من قسم المسودات إلى القسم الساري مع تاريخ التحقق.
+- التقرير تقييم ذاتي: المهارة لا تمنح شهادة امتثال ولا تقرر أن المشروع ملتزم، وما لا يظهر في الكود يُعلَّم ❓ أو 🏢 بدل افتراضه.
+- المصدر الأصلي [osama-rf/nca-secure-dev](https://github.com/osama-rf/nca-secure-dev) (MIT): التطوير الأساسي هناك، وما هنا نسخة للتوزيع مع إضافات الفريق. أي تعديل جوهري يُرفع للمستودع الأصلي أيضًا حتى لا تتفرّع النسختان.
+
 ## قواعد ثابتة
 
 - كل إضافة جديدة تُسجَّل في `marketplace.json` وتُضاف إلى جدول `README.md` في الـcommit نفسه.

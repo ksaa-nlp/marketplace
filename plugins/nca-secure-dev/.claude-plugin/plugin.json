@@ -1,0 +1,11 @@
+{
+  "name": "nca-secure-dev",
+  "version": "0.1.0",
+  "description": "تطبيق متطلبات الهيئة الوطنية للأمن السيبراني وتدقيقها: وضع BUILD يكتب الكود وفق ECC-2:2024 و NCNICC-1:2025 و NCS-2:2025، ووضع AUDIT يفحص مشروعًا قائمًا بلا تعديل ويجمع الأدلة آليًّا، ثم تقرير التزام عربي بجدول ضوابط، لكل ضابط حالته ودليله ومسار معالجته، جاهز لمراجع الأمن السيبراني.",
+  "author": {
+    "name": "فريق ksaa-nlp"
+  },
+  "repository": "https://github.com/ksaa-nlp/marketplace",
+  "license": "MIT",
+  "keywords": ["nca", "ecc", "ncnicc", "compliance", "security-audit", "secure-coding", "أمن-سيبراني", "امتثال"]
+}
