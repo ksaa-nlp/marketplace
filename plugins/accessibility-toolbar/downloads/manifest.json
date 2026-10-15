@@ -1,0 +1,20 @@
+{
+  "name": "accessibility-toolbar",
+  "version": "5.0.0",
+  "archive": "accessibility-toolbar-v5.zip",
+  "sha256": "c36cac4575f64af88ebe63969f697ce81420c0989b1759b72478375df5443635",
+  "fileCount": 12,
+  "source": {
+    "repository": "https://github.com/haithamnaddaf/arabic-accessibility-toolbar",
+    "ref": "main",
+    "archiveUrl": "https://github.com/haithamnaddaf/arabic-accessibility-toolbar/blob/main/downloads/accessibility-toolbar-v5.zip?raw=1",
+    "license": "MIT",
+    "attribution": "haithamnaddaf"
+  },
+  "testedReference": "React V5",
+  "limitations": [
+    "لا تدّعي الحزمة مطابقة كاملة لـWCAG أو ADA.",
+    "التكييف مع Vue أو Angular أو JavaScript أو تقنيات أخرى غير مختبر ضمن هذه الحزمة.",
+    "اختبارات قارئ الشاشة الحقيقي واللمس والمتصفحات الأخرى تحتاج تحققًا مستقلًا."
+  ]
+}
