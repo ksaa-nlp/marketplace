@@ -31,19 +31,23 @@
 
 | الإضافة | الوصف | الاستدعاء |
 |---|---|---|
-| [`dga-design`](plugins/dga-design/) | مطابقة تصميم المشروع لكود المنصات، نظام التصميم الوطني الموحد من هيئة الحكومة الرقمية: تدقيق آلي، ثم خطة، ثم تطبيق، ثم تقرير بأرقام بنود قائمة التحقق الرسمية | `/dga-design:dga-design [audit\|apply] [نطاق]` |
-| [`feature-test-report`](plugins/feature-test-report/) | سيناريوهات اختبار لميزة من مواصفتها: استخراج المتطلبات، ثم ربط كل سيناريو بدليله، ثم تشغيل ما يمكن تشغيله، ثم تقرير بحكم عن الجاهزية للإصدار. تعمل في أي مشروع | `/feature-test-report:feature-test-report [مسار المواصفة]` |
-| [`nca-secure-dev`](plugins/nca-secure-dev/) | تطبيق متطلبات الهيئة الوطنية للأمن السيبراني وتدقيقها: وضع يطبّق الضوابط أثناء كتابة الكود، ووضع يفحص مشروعًا قائمًا بلا تعديل، ثم تقرير التزام عربي لكل ضابط حالته ودليله ومسار معالجته | `/nca-secure-dev:nca-secure-dev [audit\|build\|fix]` |
+| `dga-design`(plugins/dga-design/) | مطابقة تصميم المشروع لكود المنصات، نظام التصميم الوطني الموحد من هيئة الحكومة الرقمية: تدقيق آلي، ثم خطة، ثم تطبيق، ثم تقرير بأرقام بنود قائمة التحقق الرسمية | `/dga-design:dga-design [audit\|apply] [نطاق]` |
+| `feature-test-report`(plugins/feature-test-report/) | سيناريوهات اختبار لميزة من مواصفتها: استخراج المتطلبات، ثم ربط كل سيناريو بدليله، ثم تشغيل ما يمكن تشغيله، ثم تقرير بحكم عن الجاهزية للإصدار. تعمل في أي مشروع | `/feature-test-report:feature-test-report [مسار المواصفة]` |
+| `nca-secure-dev`(plugins/nca-secure-dev/) | تطبيق متطلبات الهيئة الوطنية للأمن السيبراني وتدقيقها: وضع يطبّق الضوابط أثناء كتابة الكود، ووضع يفحص مشروعًا قائمًا بلا تعديل، ثم تقرير التزام عربي لكل ضابط حالته ودليله ومسار معالجته | `/nca-secure-dev:nca-secure-dev [audit\|build\|fix]` |
+| `accessibility-toolbar`(plugins/accessibility-toolbar/) | شريط تفضيلات إتاحة عربي مع مرجع React V5 وZIP أصلي وتوثيق للتكييف وحدوده، دون ادعاء مطابقة WCAG كاملة | `/accessibility-toolbar:accessibility-toolbar` |
 
 ## إضافة إضافة جديدة
 
-1. أنشئ مجلدًا في `plugins/<اسم-الإضافة>/` (الاسم بالإنجليزية، kebab-case).
-2. ضع فيه `.claude-plugin/plugin.json` بالاسم والوصف (بالعربية) والإصدار.
-3. أضف مكوّناتها في مجلداتها المعتادة: `skills/<name>/SKILL.md`، `commands/`، `agents/`، `hooks/hooks.json`، `.mcp.json`.
-4. سجّلها في مصفوفة `plugins` في [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json):
+أنشئ مجلدًا في `plugins/<اسم-الإضافة>/` (الاسم بالإنجليزية، kebab-case).
 
-   ```json
-   { "name": "<اسم-الإضافة>", "source": "./plugins/<اسم-الإضافة>", "description": "وصف عربي موجز" }
-   ```
+ضع فيه `.claude-plugin/plugin.json` بالاسم والوصف (بالعربية) والإصدار.
 
-5. حدّث جدول الإضافات أعلاه، وشغّل `claude plugin validate .` قبل الالتزام.
+أضف مكوّناتها في مجلداتها المعتادة: `skills/<name>/SKILL.md`، `commands/`، `agents/`، `hooks/hooks.json`، `.mcp.json`.
+
+سجّلها في مصفوفة `plugins` في `.claude-plugin/marketplace.json`:
+
+```json
+{ "name": "<اسم-الإضافة>", "source": "./plugins/<اسم-الإضافة>", "description": "وصف عربي موجز" }
+```
+
+حدّث جدول الإضافات أعلاه، وشغّل `claude plugin validate .` قبل الالتزام.
