@@ -31,10 +31,10 @@
 
 | الإضافة | الوصف | الاستدعاء |
 |---|---|---|
-| `dga-design`(plugins/dga-design/) | مطابقة تصميم المشروع لكود المنصات، نظام التصميم الوطني الموحد من هيئة الحكومة الرقمية: تدقيق آلي، ثم خطة، ثم تطبيق، ثم تقرير بأرقام بنود قائمة التحقق الرسمية | `/dga-design:dga-design [audit\|apply] [نطاق]` |
-| `feature-test-report`(plugins/feature-test-report/) | سيناريوهات اختبار لميزة من مواصفتها: استخراج المتطلبات، ثم ربط كل سيناريو بدليله، ثم تشغيل ما يمكن تشغيله، ثم تقرير بحكم عن الجاهزية للإصدار. تعمل في أي مشروع | `/feature-test-report:feature-test-report [مسار المواصفة]` |
-| `nca-secure-dev`(plugins/nca-secure-dev/) | تطبيق متطلبات الهيئة الوطنية للأمن السيبراني وتدقيقها: وضع يطبّق الضوابط أثناء كتابة الكود، ووضع يفحص مشروعًا قائمًا بلا تعديل، ثم تقرير التزام عربي لكل ضابط حالته ودليله ومسار معالجته | `/nca-secure-dev:nca-secure-dev [audit\|build\|fix]` |
-| `accessibility-toolbar`(plugins/accessibility-toolbar/) | شريط تفضيلات إتاحة عربي مع مرجع React V5 وZIP أصلي وتوثيق للتكييف وحدوده، دون ادعاء مطابقة WCAG كاملة | `/accessibility-toolbar:accessibility-toolbar` |
+| [`dga-design`](plugins/dga-design/) | مطابقة تصميم المشروع لكود المنصات، نظام التصميم الوطني الموحد من هيئة الحكومة الرقمية: تدقيق آلي، ثم خطة، ثم تطبيق، ثم تقرير بأرقام بنود قائمة التحقق الرسمية | `/dga-design:dga-design [audit\|apply] [نطاق]` |
+| [`feature-test-report`](plugins/feature-test-report/) | سيناريوهات اختبار لميزة من مواصفتها: استخراج المتطلبات، ثم ربط كل سيناريو بدليله، ثم تشغيل ما يمكن تشغيله، ثم تقرير بحكم عن الجاهزية للإصدار. تعمل في أي مشروع | `/feature-test-report:feature-test-report [مسار المواصفة]` |
+| [`nca-secure-dev`](plugins/nca-secure-dev/) | تطبيق متطلبات الهيئة الوطنية للأمن السيبراني وتدقيقها: وضع يطبّق الضوابط أثناء كتابة الكود، ووضع يفحص مشروعًا قائمًا بلا تعديل، ثم تقرير التزام عربي لكل ضابط حالته ودليله ومسار معالجته | `/nca-secure-dev:nca-secure-dev [audit\|build\|fix]` |
+| [`accessibility-toolbar`](plugins/accessibility-toolbar/) | شريط تفضيلات إتاحة عربي مع مرجع React V5 وZIP أصلي وتوثيق للتكييف وحدوده، دون ادعاء مطابقة WCAG كاملة | `/accessibility-toolbar:accessibility-toolbar` |
 
 ## إضافة إضافة جديدة
 
