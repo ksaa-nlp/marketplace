@@ -1,0 +1,11 @@
+{
+  "name": "skill-overhead",
+  "version": "0.2.0",
+  "description": "مهارة تفحص المهارات المثبّتة لـ Claude وCodex وAntigravity وتقيس ما تضيفه كل واحدة إلى نافذة السياق: الوصف المحمّل في كل دور، ومتن SKILL.md المحمّل عند الاستدعاء، والملفات المرفقة، ثم تعرض النتيجة جدولًا بالعربية.",
+  "author": {
+    "name": "فريق ksaa-nlp"
+  },
+  "repository": "https://github.com/ksaa-nlp/marketplace",
+  "license": "MIT",
+  "keywords": ["skills", "context", "tokens", "overhead", "codex", "antigravity", "سياق"]
+}

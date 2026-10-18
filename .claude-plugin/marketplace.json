@@ -40,6 +40,14 @@
       "version": "0.1.0",
       "category": "accessibility",
       "keywords": ["accessibility", "arabic", "rtl", "react", "visual-impairment"]
+    },
+    {
+      "name": "skill-overhead",
+      "source": "./plugins/skill-overhead",
+      "description": "تقيس ما تضيفه كل مهارة مثبّتة لـ Claude وCodex وAntigravity إلى نافذة السياق: الوصف المحمّل في كل دور، والمتن المحمّل عند الاستدعاء، والملفات المرفقة، وتعرضه جدولًا بالعربية مرتبًا من الأثقل.",
+      "version": "0.2.0",
+      "category": "productivity",
+      "keywords": ["skills", "context", "tokens", "overhead", "codex", "antigravity"]
     }
   ]
 }
