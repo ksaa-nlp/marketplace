@@ -17,6 +17,7 @@
 claude plugin validate .                                          # فحص marketplace.json وكل إضافة مسجّلة
 python3 -m unittest discover -s plugins/dga-design/tests          # اختبارات سكربتات dga-design، بلا شبكة
 python3 plugins/dga-design/scripts/sync_tokens.py [version]       # إعادة توليد رموز DGA من @platformscode/core (يحتاج npm وشبكة)
+python3 -m unittest discover -s plugins/project-brief/tests       # اختبارات project-brief، بلا شبكة
 ```
 
 السكربتات بمكتبة Python القياسية فقط، وتعمل على 3.8+.
@@ -59,6 +60,16 @@ python3 plugins/dga-design/scripts/sync_tokens.py [version]       # إعادة �
 
 - `skills/skill-overhead/SKILL.md` ← سير العمل: تشغيل الفحص، ثم عرض الجدول، ثم ملخص بالعربية. يُستدعى `/skill-overhead:skill-overhead`.
 - `skills/skill-overhead/scripts/scan.py` ← يفحص مجلدات مهارات Claude وCodex وAntigravity ويعدّ الرموز (بواجهة Anthropic إن وُجد `ANTHROPIC_API_KEY`، وإلا تقديرًا).
+
+### `plugins/project-brief` (شرح المشروع للناس)
+
+- `skills/project-brief/SKILL.md` ← أربعة أوضاع: setup ثم update ثم check (للقراءة فقط) ثم export. يُستدعى `/project-brief:project-brief`.
+- `skills/project-brief/scripts/brief.py` ← **النسخة المرجعية** للنواة المستقلة: `init` و`check` و`review` و`export`، بلا شبكة ولا Git ولا Claude. الإعداد والتحديث الدلالي عمل المهارة لا الأداة؛ لا تنسب إلى الأداة ما لا تفعله.
+- `skills/project-brief/references/` ← `contract.md` و`contract.en.md` (الصيغة نفسها بلغتين، يُقرأ أحدهما فقط؛ حدّثهما معًا) · `authoring.md` (الكتابة وحالات الجاهزية والأدلة).
+- `skills/project-brief/assets/starter/` ← ملفات البدء، ويختبر `test_package.py` تطابقها مع ناتج `init`.
+- `UPSTREAM.md` ← المصدر (`ksaa-nlp/awn-arabia@a4d95cc`)، والتعديلات، والترخيص غير المحسوم، وسياسة المزامنة، وخطوات ترحيل عون. أي تعديل على `brief.py` يُسجَّل فيه ببصمته، وإلا فشل `test_package.py`.
+- محتوى المشاريع وإعداداتها (`project-brief.json` وملفات Markdown) ملك المشروع المستهلك، ولا يوضع شيء منها في الإضافة. ومحتوى عون لا يدخل النواة ولا ملفات البدء.
+- لا ترخيص معلَن: المصدر لا يعلن ترخيصًا، فلا تضف `license` إلى `plugin.json` حتى يقرره المالكون.
 
 ## قواعد ثابتة
 

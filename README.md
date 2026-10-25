@@ -36,6 +36,7 @@
 | [`nca-secure-dev`](plugins/nca-secure-dev/) | تطبيق متطلبات الهيئة الوطنية للأمن السيبراني وتدقيقها: وضع يطبّق الضوابط أثناء كتابة الكود، ووضع يفحص مشروعًا قائمًا بلا تعديل، ثم تقرير التزام عربي لكل ضابط حالته ودليله ومسار معالجته | `/nca-secure-dev:nca-secure-dev [audit\|build\|fix]` |
 | [`accessibility-toolbar`](plugins/accessibility-toolbar/) | شريط تفضيلات إتاحة عربي مع مرجع React V5 وZIP أصلي وتوثيق للتكييف وحدوده، دون ادعاء مطابقة WCAG كاملة | `/accessibility-toolbar:accessibility-toolbar` |
 | [`skill-overhead`](plugins/skill-overhead/) | قياس ما تضيفه كل مهارة مثبّتة لـ Claude وCodex وAntigravity إلى نافذة السياق: الوصف المحمّل في كل دور مقابل المتن المحمّل عند الاستدعاء والملفات المرفقة، في جدول عربي مرتب من الأثقل | `/skill-overhead:skill-overhead [--tools ...] [مجلدات إضافية]` |
+| [`project-brief`](plugins/project-brief/) | شرح المشروع للناس في Markdown يملكه المشروع: إعداد آمن للتكرار، وتحديث بعد التغييرات المؤثرة، وفحص لتقادم النص والأدلة والترجمات، وتصدير مادة ملخص أو عرض أو تقرير لجمهور ولغة ووجهة نظر يحددها المشروع. أداتها تعمل دون Claude | `/project-brief:project-brief [setup\|update\|check\|export] [خيارات]` |
 
 ## إضافة إضافة جديدة
 

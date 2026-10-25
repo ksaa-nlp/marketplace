@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "سوق إضافات Claude Code لفريق ksaa-nlp: مهارات وأوامر وعملاء وخوادم MCP مشتركة لمشاريع حوسبة اللغة العربية، يثبّتها أعضاء الفريق بأمر واحد فتتوحّد أدوات العمل وطرائقه بين المستودعات.",
-    "version": "0.4.0"
+    "version": "0.5.0"
   },
   "plugins": [
     {
@@ -48,6 +48,14 @@
       "version": "0.2.0",
       "category": "productivity",
       "keywords": ["skills", "context", "tokens", "overhead", "codex", "antigravity"]
+    },
+    {
+      "name": "project-brief",
+      "source": "./plugins/project-brief",
+      "description": "يحفظ شرح المشروع للناس في Markdown يملكه المشروع ويحدّثه ويفحص تقادمه ببصمات مراجعة، ثم يصدّر مادة ملخص أو عرض أو تقرير لجمهور ولغة ووجهة نظر يحددها المشروع، لمشاريع البرمجيات والبحث والخدمات والأفكار الأولية.",
+      "version": "0.1.0",
+      "category": "documentation",
+      "keywords": ["project-brief", "executive-summary", "presentation", "documentation", "arabic"]
     }
   ]
 }

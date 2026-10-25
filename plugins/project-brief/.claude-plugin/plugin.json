@@ -1,0 +1,10 @@
+{
+  "name": "project-brief",
+  "version": "0.1.0",
+  "description": "مهارة تحفظ شرح المشروع للناس في ملفات Markdown وإعداد JSON يملكها المشروع، وتحدّثه بعد التغييرات المؤثرة، وتفحص تقادم النص والأدلة والترجمات ببصمات مراجعة، وتصدّر مادة ملخص تنفيذي أو عرض أو تقرير أو سيناريو عرض لجمهور ولغة ووجهة نظر يحددها المشروع. لا تصنع ملفات PowerPoint ولا تنشر شيئًا، وأداتها تعمل دون Claude.",
+  "author": {
+    "name": "فريق ksaa-nlp"
+  },
+  "repository": "https://github.com/ksaa-nlp/marketplace",
+  "keywords": ["project-brief", "executive-summary", "presentation", "documentation", "arabic", "rtl", "ملخص-تنفيذي"]
+}

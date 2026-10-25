@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """Project Brief: optional, dependency-free tooling for portable briefing content."""
+# Canonical copy: ksaa-nlp/marketplace plugins/project-brief (see UPSTREAM.md there).
+# Imported from ksaa-nlp/awn-arabia@a4d95cc tools/project-brief/brief.py. Python 3.8+.
 import argparse
 import hashlib
 import json
@@ -9,6 +11,19 @@ import sys
 from datetime import datetime, timezone
 
 MAX_BYTES = 2_000_000
+RTL_LANGUAGES = {'ar', 'arc', 'ckb', 'dv', 'fa', 'he', 'ks', 'ps', 'sd', 'syr', 'ug', 'ur', 'yi'}
+STARTERS = {
+    'en': ('# Project introduction\n\nReplace this illustrative content with the problem, intended audience, '
+           'proposed value and next decision. State what is known, unknown and not yet verified. '
+           'This starter is not a factual description of your project.\n',
+           {'audience': 'Define your audience', 'perspective': 'Define the author or viewpoint',
+            'priorities': ['Define what matters'], 'delivery': 'Define the intended medium'}),
+    'ar': ('# تعريف بالمشروع\n\nاستبدل هذا النص التوضيحي بالمشكلة والجمهور المقصود والقيمة المقترحة '
+           'والقرار التالي. اذكر ما هو معروف وما هو مجهول وما لم يُتحقق منه بعد. '
+           'هذا نص للبدء، وليس وصفًا حقيقيًا لمشروعك.\n',
+           {'audience': 'حدّد الجمهور', 'perspective': 'حدّد الكاتب أو وجهة النظر',
+            'priorities': ['حدّد ما يهم'], 'delivery': 'حدّد وسيلة التقديم'}),
+}
 
 class BriefError(ValueError):
     pass
@@ -16,11 +31,21 @@ class BriefError(ValueError):
 def digest(value):
     return hashlib.sha256(value.encode('utf-8')).hexdigest()
 
+def inside(path, root):
+    # Path.is_relative_to needs Python 3.9; relative_to performs the same check on 3.8.
+    try:
+        path.relative_to(root)
+    except ValueError:
+        return False
+    return True
+
 def local(root, name):
     if not isinstance(name, str) or not name:
         raise BriefError('A local path must be a nonempty string')
+    # Both sides resolved: an unresolved root (Windows 8.3 names, macOS /var) would reject valid paths.
+    root = root.resolve()
     path = (root / name).resolve()
-    if not path.is_relative_to(root):
+    if not inside(path, root):
         raise BriefError('Path escapes project root: ' + name)
     return path
 
@@ -32,6 +57,8 @@ def read(root, name):
 
 def load(root, config):
     data = json.loads(read(root, config))
+    if not isinstance(data, dict):
+        raise BriefError('Manifest must be a JSON object')
     if data.get('version') != 1:
         raise BriefError('Unsupported manifest version; expected 1')
     for field in ('primary_language', 'topics', 'recipes'):
@@ -168,9 +195,49 @@ def markdown(pack):
     header += f"<!-- Project Brief snapshot: {pack['generated_at']}; fingerprint={pack['content_fingerprint']} -->\n\n"
     return header + '\n\n'.join(('> REVIEW REQUIRED: ' + ', '.join(t['needs_review']) + '\n\n' if t['needs_review'] else '') + t['text'] for t in pack['topics']) + '\n'
 
+def create(path, text):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    # Exclusive creation never replaces an existing file or follows a pre-existing symlink.
+    with path.open('x', encoding='utf-8', newline='\n') as stream:
+        stream.write(text)
+
+def init(root, config, content_path, language, direction=None, project=None):
+    # Creates only what is missing; an existing manifest is validated and an existing content file adopted, unchanged.
+    if local(root, config).exists():
+        load(root, config)
+        return [('unchanged', config)]
+    if not re.fullmatch(r'[A-Za-z0-9-]+', language):
+        raise BriefError('Invalid language tag: ' + language)
+    if local(root, content_path) == local(root, config):
+        raise BriefError('Content and manifest must be different files')
+    direction = direction or ('rtl' if language.split('-')[0].lower() in RTL_LANGUAGES else 'ltr')
+    text, recipe = STARTERS['ar' if language.split('-')[0].lower() == 'ar' else 'en']
+    report = []
+    if local(root, content_path).exists():
+        if not read(root, content_path).strip():
+            raise BriefError('Existing content file is empty: ' + content_path)
+        report.append(('adopted', content_path))
+    else:
+        create(local(root, content_path), text)
+        report.append(('created', content_path))
+    project = project or root.resolve().name
+    data = {'version': 1, 'project': project, 'primary_language': language,
+            'topics': {'purpose': {'visibility': 'internal',
+                                   'variants': {language: {'path': content_path, 'direction': direction}},
+                                   'evidence': [], 'claims': {'maturity': 'unknown'}}},
+            'recipes': {'introduction': dict(topics=['purpose'], visibility='internal', **recipe, max_chars=3000)}}
+    create(local(root, config), json.dumps(data, ensure_ascii=False, indent=2) + '\n')
+    load(root, config)
+    return report + [('created', config),
+                     ('settings', 'project=' + project + ' primary_language=' + language + ' direction=' + direction)]
+
 def main():
+    # Redirected output otherwise uses the locale code page on Windows, which cannot encode all Arabic text.
+    for stream, errors in ((sys.stdout, 'strict'), (sys.stderr, 'backslashreplace')):
+        if hasattr(stream, 'reconfigure'):
+            stream.reconfigure(encoding='utf-8', errors=errors)
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=['check', 'export', 'review'])
+    parser.add_argument('command', choices=['check', 'export', 'review', 'init'])
     parser.add_argument('--root', default='.')
     parser.add_argument('--config', default='project-brief.json')
     parser.add_argument('--recipe')
@@ -179,9 +246,16 @@ def main():
     parser.add_argument('--topic')
     parser.add_argument('--acknowledge-reviewed', action='store_true')
     parser.add_argument('--allow-stale', action='store_true')
+    parser.add_argument('--content', default='brief.md', help='init: content file to create or adopt')
+    parser.add_argument('--direction', choices=['rtl', 'ltr'], help='init: override the inferred direction')
+    parser.add_argument('--project', help='init: project name (default: root folder name)')
     args = parser.parse_args()
     try:
         root = Path(args.root).resolve()
+        if args.command == 'init':
+            for action, name in init(root, args.config, args.content, args.language or 'en', args.direction, args.project):
+                print(action + ': ' + name)
+            return 0
         data = load(root, args.config)
         if args.command == 'check':
             results = check(root, data)
@@ -196,12 +270,16 @@ def main():
             topic['variants'][language]['review'] = {**fp, 'at': datetime.now(timezone.utc).isoformat()}
             path = local(root, args.config)
             staged = path.with_name(path.name + '.tmp')
+            # Keep the manifest's own line endings rather than the platform default.
+            newline = '\r\n' if b'\r\n' in path.read_bytes() else '\n'
             # Exclusive creation prevents following a pre-existing staging symlink.
-            with staged.open('x', encoding='utf-8') as stream:
+            with staged.open('x', encoding='utf-8', newline=newline) as stream:
                 stream.write(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
             staged.replace(path)
             print('Recorded editorial review; this is not independent verification.')
         else:
+            if not args.recipe:
+                raise BriefError('Export requires --recipe')
             result = export(root, data, args.recipe, language, args.allow_stale)
             print(json.dumps(result, ensure_ascii=False, indent=2) if args.format == 'json' else markdown(result), end='\n')
         return 0

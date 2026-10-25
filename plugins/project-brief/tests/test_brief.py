@@ -5,12 +5,15 @@ import tempfile
 import subprocess
 import sys
 import unittest
-spec=importlib.util.spec_from_file_location('brief',Path(__file__).with_name('brief.py'))
+# Ported from ksaa-nlp/awn-arabia@a4d95cc tools/project-brief/test_brief.py; changes are listed in UPSTREAM.md.
+# brief.py beside this file (a copied kit) wins over the marketplace plugin layout.
+here=Path(__file__).resolve().parent
+spec=importlib.util.spec_from_file_location('brief',here/'brief.py' if (here/'brief.py').exists() else here.parent/'skills'/'project-brief'/'scripts'/'brief.py')
 b=importlib.util.module_from_spec(spec);spec.loader.exec_module(b)
 class Tests(unittest.TestCase):
  def setUp(self):
   tmp=tempfile.TemporaryDirectory();self.addCleanup(tmp.cleanup);self.root=Path(tmp.name)
-  for name,text in [('idea.md','Community garden proposal. Not implemented.'),('arabic.md','مقترح حديقة لم ينفذ بعد.'),('evidence.txt','Interview')]: (self.root/name).write_text(text)
+  for name,text in [('idea.md','Community garden proposal. Not implemented.'),('arabic.md','مقترح حديقة لم ينفذ بعد.'),('evidence.txt','Interview')]: (self.root/name).write_text(text,encoding='utf-8')
   self.d={'version':1,'primary_language':'en','topics':{'purpose':{'visibility':'public','variants':{l:{'path':p,'direction':dr} for l,p,dr in [('en','idea.md','ltr'),('ar','arabic.md','rtl')]},'evidence':[{'ref':'evidence.txt'}],'claims':{'stage':'proposal'}}},'recipes':{'pitch':{'topics':['purpose'],'visibility':'public','perspective':'Organizer','priorities':['Accessibility'],'max_chars':1000}}}
   self.stamp()
  def stamp(self):
@@ -48,7 +51,8 @@ class Tests(unittest.TestCase):
   with self.assertRaises(b.BriefError):b.export(self.root,self.d,'pitch','en')
  def test_path_symlink_escape(self):
   with self.assertRaises(b.BriefError):b.read(self.root,'../outside')
-  (self.root/'escape').symlink_to('/etc/hosts')
+  try:(self.root/'escape').symlink_to('/etc/hosts')
+  except OSError as error:self.skipTest('symlinks unavailable: '+str(error))
   with self.assertRaises(b.BriefError):b.read(self.root,'escape')
  def test_block_boundaries(self):
   p=self.root/'idea.md';p.write_text('other\n<!-- project-brief:start id=x lang=en -->\nSelected\n<!-- project-brief:end id=x lang=en -->')
