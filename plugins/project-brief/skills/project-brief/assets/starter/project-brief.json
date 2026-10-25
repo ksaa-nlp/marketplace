@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "project": "Example project",
+  "primary_language": "en",
+  "topics": {
+    "purpose": {
+      "visibility": "internal",
+      "variants": {
+        "en": {
+          "path": "brief.md",
+          "direction": "ltr"
+        }
+      },
+      "evidence": [],
+      "claims": {
+        "maturity": "unknown"
+      }
+    }
+  },
+  "recipes": {
+    "introduction": {
+      "topics": [
+        "purpose"
+      ],
+      "visibility": "internal",
+      "audience": "Define your audience",
+      "perspective": "Define the author or viewpoint",
+      "priorities": [
+        "Define what matters"
+      ],
+      "delivery": "Define the intended medium",
+      "max_chars": 3000
+    }
+  }
+}
