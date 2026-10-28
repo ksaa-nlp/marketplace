@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "ksaa": {
+      "type": "http",
+      "url": "https://mcp.arai.center/mcp"
+    }
+  }
+}

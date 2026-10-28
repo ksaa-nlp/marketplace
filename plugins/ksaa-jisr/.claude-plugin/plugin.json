@@ -1,0 +1,13 @@
+{
+  "name": "ksaa-jisr",
+  "displayName": "جسر المجمع",
+  "version": "0.1.0",
+  "description": "إضافة تربط Claude بمنصات مجمع الملك سلمان العالمي للغة العربية عبر خادم «جسر المجمع» (MCP): معجم الرياض، ومدونات فلك، والمستشار اللغوي، وسجل «اختصار»، والمكتبة الرقمية، والألعاب اللغوية، ومؤشر بلسم، ومرصد حوسبة العربية. ثلاث مهارات يستدعيها Claude عند السؤال عن كلمة عربية أو صحة استعمال أو موارد المجمع، فيجيب من المصدر بنصه ولا يؤلّف.",
+  "author": {
+    "name": "فريق ksaa-nlp"
+  },
+  "repository": "https://github.com/ksaa-nlp/marketplace",
+  "homepage": "https://mcp.arai.center",
+  "license": "MIT",
+  "keywords": ["arabic", "dictionary", "mcp", "siwar", "corpus", "ksaa", "معجم"]
+}

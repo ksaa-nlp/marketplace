@@ -37,6 +37,7 @@
 | [`accessibility-toolbar`](plugins/accessibility-toolbar/) | شريط تفضيلات إتاحة عربي مع مرجع React V5 وZIP أصلي وتوثيق للتكييف وحدوده، دون ادعاء مطابقة WCAG كاملة | `/accessibility-toolbar:accessibility-toolbar` |
 | [`skill-overhead`](plugins/skill-overhead/) | قياس ما تضيفه كل مهارة مثبّتة لـ Claude وCodex وAntigravity إلى نافذة السياق: الوصف المحمّل في كل دور مقابل المتن المحمّل عند الاستدعاء والملفات المرفقة، في جدول عربي مرتب من الأثقل | `/skill-overhead:skill-overhead [--tools ...] [مجلدات إضافية]` |
 | [`project-brief`](plugins/project-brief/) | شرح المشروع للناس في Markdown يملكه المشروع: إعداد آمن للتكرار، وتحديث بعد التغييرات المؤثرة، وفحص لتقادم النص والأدلة والترجمات، وتصدير مادة ملخص أو عرض أو تقرير لجمهور ولغة ووجهة نظر يحددها المشروع. أداتها تعمل دون Claude | `/project-brief:project-brief [setup\|update\|check\|export] [خيارات]` |
+| [`ksaa-jisr`](plugins/ksaa-jisr/) | «جسر المجمع»: يربط Claude بمنصات المجمع (معجم الرياض، فلك، المستشار اللغوي، «اختصار»، المكتبة الرقمية، الألعاب، بلسم، المرصد) عبر MCP، فيجيب عن أسئلة العربية من المصدر بنصه. يستدعيه Claude تلقائيًا. | `/ksaa-jisr:setup` ثم `/ksaa-jisr:arabic-word [كلمة]` |
 
 ## إضافة إضافة جديدة
 
