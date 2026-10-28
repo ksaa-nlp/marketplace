@@ -71,6 +71,15 @@ python3 -m unittest discover -s plugins/project-brief/tests       # اختبار
 - محتوى المشاريع وإعداداتها (`project-brief.json` وملفات Markdown) ملك المشروع المستهلك، ولا يوضع شيء منها في الإضافة. ومحتوى عون لا يدخل النواة ولا ملفات البدء.
 - لا ترخيص معلَن: المصدر لا يعلن ترخيصًا، فلا تضف `license` إلى `plugin.json` حتى يقرره المالكون.
 
+### `plugins/ksaa-jisr` (جسر المجمع: منصات المجمع عبر MCP)
+- `.mcp.json` ← الخادم البعيد `ksaa` على https://mcp.arai.center/mcp، بلا مفاتيح؛ الدخول بحساب Google عبر OAuth يديره Claude. يبقى الرابط كما هو ليتطابق مع موصِّل claude.ai فلا تتكرر الأدوات.
+- `skills/arabic-word/SKILL.md` ← أسئلة الكلمة العربية (سوار + فلك)، يستدعيها Claude تلقائيًا أو `/ksaa-jisr:arabic-word`؛ و`references/corpus.md` لشواهد الاستعمال.
+- `skills/arabic-usage/SKILL.md` ← صحة الاستعمال (المستشار اللغوي) والمختصرات («اختصار»)؛ و`references/consultations.md` لعرض الاستشارة.
+- `skills/ksaa-resources/SKILL.md` ← المكتبة الرقمية والألعاب وبلسم والمرصد وأسئلة المنصات.
+- `skills/setup/SKILL.md` ← `/ksaa-jisr:setup` للتحقق من الاتصال وتسجيل الدخول؛ لا يستدعيه Claude من تلقاء نفسه.
+- `tests/test_package.py` ← فحص الحزمة دون شبكة، ومنه مطابقة أسماء الأدوات لأدوات الخادم.
+- قاعدة: تُذكر أدوات MCP في المهارات بأسمائها المجردة (`siwar_get_word_meaning`) لا ببادئة الخادم، لتعمل مع الإضافة والموصِّل معًا. وأي تعديل على `description` يستوجب إعادة فحص الاستدعاء أدناه.
+
 ## قواعد ثابتة
 
 - كل إضافة جديدة تُسجَّل في `marketplace.json` وتُضاف إلى جدول `README.md` في الـcommit نفسه.

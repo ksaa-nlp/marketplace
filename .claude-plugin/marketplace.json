@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "سوق إضافات Claude Code لفريق ksaa-nlp: مهارات وأوامر وعملاء وخوادم MCP مشتركة لمشاريع حوسبة اللغة العربية، يثبّتها أعضاء الفريق بأمر واحد فتتوحّد أدوات العمل وطرائقه بين المستودعات.",
-    "version": "0.5.0"
+    "version": "0.6.0"
   },
   "plugins": [
     {
@@ -56,6 +56,14 @@
       "version": "0.1.0",
       "category": "documentation",
       "keywords": ["project-brief", "executive-summary", "presentation", "documentation", "arabic"]
+    },
+    {
+      "name": "ksaa-jisr",
+      "source": "./plugins/ksaa-jisr",
+      "description": "يربط Claude بمنصات مجمع الملك سلمان العالمي للغة العربية عبر خادم «جسر المجمع»: معاني الكلمات وشواهد استعمالها، وصحة الاستعمال من المستشار اللغوي، والمختصرات المعتمدة، وكتب المجمع ومجلاته، والألعاب اللغوية، ومؤشر بلسم، ومرصد حوسبة العربية؛ يجيب من المصدر بنصه ولا يؤلّف.",
+      "version": "0.1.0",
+      "category": "productivity",
+      "keywords": ["arabic", "dictionary", "mcp", "siwar", "corpus", "ksaa"]
     }
   ]
 }
